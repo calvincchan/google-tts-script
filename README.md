@@ -30,9 +30,15 @@ yarn install
 
 ## Usage
 
-1. Set up your Google Cloud credentials:
+1. Set up your Google Cloud service account credentials:
 
-- Follow the instructions [here](https://cloud.google.com/text-to-speech/docs/quickstart-client-libraries) to set up authentication.
+- Copy the `credentials.json` file into `secret/` directory.
+
+- Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable in `.env` file. For example:
+
+```filename=".env"
+GOOGLE_APPLICATION_CREDENTIALS=secret/credentials.json
+```
 
 2. Put the SSML formatted text you want to convert into a file in the `data/` directory.
 
