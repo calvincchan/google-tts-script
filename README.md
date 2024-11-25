@@ -40,7 +40,7 @@ yarn install
 GOOGLE_APPLICATION_CREDENTIALS=secret/credentials.json
 ```
 
-2. Put the SSML formatted text you want to convert into a file in the `data/` directory.
+2. Put the SSML formatted text you want to convert into a file in the `data/` directory. Example file: `data/sample.ssml`.
 
 3. Run the script:
 
@@ -53,6 +53,12 @@ Eample:
 ```sh
 node index.js data/sample.ssml
 ```
+
+Then the script will generate an audio file in the `output/` directory. The audio file will be named after the input file with the `.mp3` extension. Example: `output/sample.mp3`.
+
+Listen to the sample output file:
+
+> [Sample Output: sample.mp3](./sample.mp3)
 
 ## Contributing
 
