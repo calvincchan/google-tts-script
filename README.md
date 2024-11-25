@@ -58,7 +58,7 @@ Then the script will generate an audio file in the `output/` directory. The audi
 
 Listen to the sample output file:
 
-<audio controls> <source src="./sample.mp3" type="audio/mpeg"> Your browser does not support the audio element. </audio>
+> [Sample Output: sample.mp3](./sample.mp3)
 
 ## Contributing
 
