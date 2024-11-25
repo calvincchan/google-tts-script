@@ -1,3 +1,12 @@
+/**
+ * This script will generate a mp3 audio file from the SSML file in data/ and write to output/.
+ *
+ * Usage: node index.js <filename>
+ *
+ * Example: node index.js sample
+ * The above command will generate an audio file from the data/sample.ssml file and write to output/sample.mp3
+ */
+
 import "dotenv/config";
 
 // Import the Google Cloud client library
@@ -30,7 +39,7 @@ async function synthesizeSpeech(ssml, outputFile) {
 
 async function main() {
   console.log(
-    "This script will generate an audio file from the SSML file in the data/ folder and write to output/ folder."
+    "This script will generate an audio file from the SSML file in the data/ dir and write to output/ dir."
   );
 
   // Read file name from command line arguments
@@ -41,7 +50,7 @@ async function main() {
   }
   // Read SSML file
   const ssml = readFileSync(`data/${filename}.ssml`, "utf8");
-  const outputFile = `output/output-${filename}.mp3`;
+  const outputFile = `output/${filename}.mp3`;
   // Generate audio file
   await synthesizeSpeech(ssml, outputFile).catch(console.error);
 }
