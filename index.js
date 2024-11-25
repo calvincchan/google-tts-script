@@ -2,16 +2,15 @@ import "dotenv/config";
 
 // Import the Google Cloud client library
 import { TextToSpeechClient } from "@google-cloud/text-to-speech";
-import { writeFile as _writeFile, readFileSync } from "fs";
-import { promisify } from "util";
+import { readFileSync, writeFileSync } from "fs";
 
 // Creates a client
 const client = new TextToSpeechClient();
 
-async function synthesizeSpeech(text, outputFile) {
+async function synthesizeSpeech(ssml, outputFile) {
   // Construct the request
   const request = {
-    input: { text: text },
+    input: { ssml: ssml },
     // Select the language and SSML voice gender (optional)
     voice: {
       languageCode: "ja-JP",
@@ -25,13 +24,26 @@ async function synthesizeSpeech(text, outputFile) {
   const [response] = await client.synthesizeSpeech(request);
 
   // Write the binary audio content to a local file
-  const writeFile = promisify(_writeFile);
-  await writeFile(outputFile, response.audioContent, "binary");
+  writeFileSync(outputFile, response.audioContent, "binary");
   console.log(`Audio content written to file: ${outputFile}`);
 }
 
-// Example usage
-const id = "001";
-const text = readFileSync(`data/${id}.txt`, "utf8");
-const outputFile = `output-${id}.mp3`;
-synthesizeSpeech(text, outputFile).catch(console.error);
+async function main() {
+  console.log(
+    "This script will generate an audio file from the SSML file in the data/ folder and write to output/ folder."
+  );
+
+  // Read file name from command line arguments
+  const filename = process.argv[2];
+  if (!filename) {
+    console.error("Usage: node index.js <filename>");
+    process.exit(1);
+  }
+  // Read SSML file
+  const ssml = readFileSync(`data/${filename}.ssml`, "utf8");
+  const outputFile = `output/output-${filename}.mp3`;
+  // Generate audio file
+  await synthesizeSpeech(ssml, outputFile).catch(console.error);
+}
+
+main().catch(console.error);
