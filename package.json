@@ -2,8 +2,8 @@
   "name": "20241015-google-tts",
   "packageManager": "yarn@4.2.2",
   "dependencies": {
-    "@google-cloud/text-to-speech": "^5.6.0",
-    "dotenv": "^16.4.5"
+    "@google-cloud/text-to-speech": "^6.1.0",
+    "dotenv": "^16.5.0"
   },
   "type": "module",
   "scripts": {
